@@ -1,0 +1,70 @@
+{% extends "base.html"%}
+{%  block title %}Pokemon perfil {% endblock %}
+<html>
+    {% block h1%}Pokemon perfil{% endblock %}
+    {% block menu%}
+    {% endblock%}
+    {%  block content %}
+    {% if caracteristicas %}
+    <div id="container">
+        <div id = "post">
+            <h1>{{caracteristicas.nombre}}</h1>
+            <img alt="Qries" src="{{ caracteristicas.sprites }}" width="150" height="150">
+            <p>Peso: {{caracteristicas.peso}}</p>
+            <p>Altura: {{caracteristicas.altura}}</p>
+            <p>Typos:
+            {% for typo in caracteristicas.types%}
+            
+            <a href="{% url 'ver_pokemons_tipo' typo.idtypo %}">{{typo.name}},</a> 
+
+            {% endfor%}
+            </p>
+            <p>Habilidades:
+                {% for habilidad in caracteristicas.Habilidad %}
+                {{ habilidad }},
+                {% endfor %}
+            </p>
+            <p>
+                Movimientos:
+                {% for moves in caracteristicas.moves%}
+                {{ moves }},
+                {% endfor %}
+                <br>
+            </p>
+        </div>
+        
+    </div>
+    {% else %}
+    <p>Ningun Pokemon coincide con el criterio de busqueda.</p>
+    {% endif %}
+</html>
+<style>
+    table, th, td {
+      border: 0px solid black;
+      text-align: center;
+      color: black;
+    }
+    body
+    {
+        color: #333;
+        text-align:center;
+        font-family:"Arial";
+        font-size:16px;
+        margin:0;
+        padding:0;
+    }
+    #container
+    {
+        width: 70%;
+        padding: 0;
+        text-align:center;
+        border: 1px solid #DDD;
+        margin:0 auto;
+    }
+    #post
+    {
+        padding:1em;
+
+    }
+</style>
+{% endblock %}

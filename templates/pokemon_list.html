@@ -1,0 +1,78 @@
+{% extends "base.html"%}
+{%  block title %}Pokemons encontrados {% endblock %}
+<html>
+    {% block h1%}Pokemons encontrados{% endblock %}
+    {% block menu%}
+    {% endblock%}
+    {%  block content %}
+    {% if Pokemons %}
+    
+    <ul>
+        <table style="width:100%"cellpadding="10" >
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if Pokemons %}
+                    {% for key, value in Pokemons.items %}
+                    <tr>
+                        <td >{{ value.id }}</td>
+                        <td >{{ value.nombre }}</td>
+                        <td><img alt="Qries" src="{{ value.image }}"
+                            width="150" height="150"></td>
+                        <td>
+                            <a class= "btn btn-primary" href="{% url 'ver_pokemon' value.id%}">Ver detalles</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <h1>No hay registros de Pokemons</h1>
+                {% endif %}
+            </tbody>
+
+              
+        </table>
+        
+    </ul>
+    {% else %}
+    <p>Ningun Pokemon coincide con el criterio de busqueda.</p>
+    {% endif %}
+</html>
+<style>
+    table, th, td {
+      border: 0px solid black;
+      text-align: center;
+      color: black;
+    }
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .previous {
+        
+        background-color: #f1f1f1;
+        color: black;
+    }
+
+    .next {
+        
+        background-color: #EB6864;
+        color: white;
+    }
+
+    .round {
+        border-radius: 50%;
+    }
+</style>
+{% endblock %}
